@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AuthService.Application.Interfaces;
 using AuthService.Infrastructure.Persistence;
 using AuthService.Infrastructure.Repositories;
+using AuthService.Infrastructure.Security;
 
 namespace AuthService.Infrastructure;
 
@@ -18,6 +19,8 @@ public static class DependencyInjection
                 configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IUserRepository, UserRepository>();
+
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
         return services;
     }
